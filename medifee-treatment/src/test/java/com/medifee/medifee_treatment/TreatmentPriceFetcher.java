@@ -103,6 +103,6 @@ public class TreatmentPriceFetcher extends TestBase {
 	@AfterMethod
 	public void tearDown() throws IOException {
 		CSVUtil.closeFileConnection();
-		driver.quit();
+		//driver.quit();
 	}
 }
