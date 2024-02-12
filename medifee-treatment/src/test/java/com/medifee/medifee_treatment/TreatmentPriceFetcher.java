@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import com.medifee.medifee_treatment.base.TestBase;
 import com.medifee.medifee_treatment.pages.TreatmentListPage;
@@ -33,8 +34,8 @@ public class TreatmentPriceFetcher extends TestBase {
 	}
 
 	//Actions to get TreatmentPriceData 
-	//@Test
-	public void getTreatmentPriceData2() {
+	@Test
+	public void fetchData() {
 		try {
 			String pageTitle = treatmentPage.getPageTitle();
 			CSVUtil.writeCSV(new String[]{pageTitle});

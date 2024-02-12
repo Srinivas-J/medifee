@@ -51,7 +51,6 @@ public class TreatmentPricePage extends TestBase {
 	//Actions
 	public String getPageHeading() {
 
-		System.out.println("pageHeadingText= "+pageHeadingText.getText());
 		return pageHeadingText.getText();
 	}
 
@@ -71,20 +70,17 @@ public class TreatmentPricePage extends TestBase {
 	public String getLowestCost() {
 
 		String lowCost = lowestCost.getText().trim().substring(1);
-		System.out.println("LowestCost= "+lowCost);
 		return lowCost;
 	}
 
 	public String getAverageCost() {
 
 		String avgCost = averageCost.getText().trim().substring(1);
-		System.out.println("averageCost= "+avgCost);
 		return avgCost;
 	}
 
 	public String getHighestCost() {
 		String highCost = highestCost.getText().trim().substring(1);
-		System.out.println("highestCost= "+highCost);
 		return highCost;
 	}
 
@@ -104,8 +100,8 @@ public class TreatmentPricePage extends TestBase {
 		ArrayList<String> list = new ArrayList<String>();
 
 		for(int i=0; i<priceVal.size(); i++){
-			String infoText = priceVal.get(i).getText();
-			list.add(infoText);
+			String infoPrice = priceVal.get(i).getText().trim().substring(1).replaceAll(",", "");
+			list.add(infoPrice);
 		}
 		return list;
 	}
@@ -190,5 +186,34 @@ public class TreatmentPricePage extends TestBase {
 
 			System.out.println(cityName+"\t"+minPrice+"\t"+maxPrice);
 		}
+	}
+
+	public ArrayList<String> getCityNameMinMaxList() {
+
+		ArrayList<String> cityMinMax = new ArrayList<String>();
+		ArrayList<String> cityList = getAllCities();
+
+		for(String cityName: cityList) {
+			String minCity = cityName+"_Min";
+			String maxCity = cityName+"_Max";
+			cityMinMax.add(minCity);
+			cityMinMax.add(maxCity);
+		}
+		return cityMinMax;
+	}
+
+	public ArrayList<String> getCityPriceMinMaxList() {
+
+		ArrayList<String> cityList = getAllCities();
+		ArrayList<String> priceMinMax = new ArrayList<String>();
+
+		for(String cityName: cityList) {
+
+			String minPrice = getMinPrice(cityName);
+			String maxPrice = getMaxPrice(cityName);
+			priceMinMax.add(minPrice);
+			priceMinMax.add(maxPrice);
+		}
+		return priceMinMax;
 	}
 }
